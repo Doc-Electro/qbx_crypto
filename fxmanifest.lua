@@ -2,7 +2,7 @@ fx_version 'cerulean'
 game 'gta5'
 
 description 'QBX_Crypto'
-repository 'https://github.com/Qbox-project/qbx_crypto'
+repository 'https://github.com/Doc-Electro/qbx_crypto'
 version '1.0.0'
 
 shared_scripts {
