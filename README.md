@@ -1,7 +1,8 @@
 # qbx_crypto
 
 **Description:**
-A simple modification of the standard `qbx_crypto`, allowing players to obtain money from cryptosticks instead of cryptocurrency.
+A simple modification of the standard `qb-crypto`, allowing players to obtain money from cryptosticks instead of cryptocurrency.
+Also added the Rare Cryptostick
 
 ## Table of Contents
 
@@ -14,7 +15,7 @@ A simple modification of the standard `qbx_crypto`, allowing players to obtain m
 
 ## Overview
 
-`qbx_crypto` is a modified version of the `qbx-crypto` resource for [QBOX-Core] This modification allows players to receive direct cash rewards from cryptosticks, providing an alternative reward structure within the game.
+`qbx_crypto` is a modified version of the `qb-crypto` resource for [QB-Core](https://github.com/qbcore-framework). This modification allows players to receive direct cash rewards from cryptosticks, providing an alternative reward structure within the game.
 
 ## Installation
 
@@ -47,11 +48,25 @@ A simple modification of the standard `qbx_crypto`, allowing players to obtain m
 
 Once installed, players can use cryptosticks to receive direct cash rewards. The functionality seamlessly integrates with the server's existing economy, offering an alternative way to obtain rewards.
 
+### Customizing Reward Amount
 The amount of money obtained from a cryptostick can be customized in the `server/main.lua` file on line 246:
 ```lua
 local Amount = math.random(1000, 5000)
 ```
 Adjust the values in `math.random` to set the minimum and maximum amounts.
+
+### Rare Cryptostick Feature
+There is a 5% chance for players to receive a rare cryptostick, which grants significantly higher rewards. The reward for a rare cryptostick can be customized in the `server/main.lua` file:
+```lua
+if math.random(1, 100) <= 5 then -- 5% chance for a rare cryptostick
+    local Amount = math.random(10000, 20000)
+    TriggerClientEvent('notifyRareStick', source, Amount)
+else
+    local Amount = math.random(1000, 5000)
+    TriggerClientEvent('notifyNormalStick', source, Amount)
+end
+```
+You can adjust the probabilities and reward amounts to fit your server's economy.
 
 ## Contributing
 
@@ -75,4 +90,3 @@ Contributions to this project are welcome. Follow these steps to contribute:
 ## License
 
 This project is licensed under the GPL-3.0 License. See the [LICENSE](https://github.com/Doc-Electro/qbx_crypto/blob/main/LICENSE) file for more information.
-

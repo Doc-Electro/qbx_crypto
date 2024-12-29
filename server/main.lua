@@ -243,12 +243,19 @@ RegisterServerEvent('qb-crypto:server:ExchangeSuccess', function(LuckChance)
 
     if amount > 0 then
         exports.ox_inventory:RemoveItem(src, 'cryptostick', 1)
-        local Amount = math.random(1000, 5000) -- Adjust amount range as needed
+
+        -- Rare Cryptostick Logic
+        local Amount
+        if math.random(1, 100) <= 5 then -- 5% chance for a rare cryptostick
+            Amount = math.random(10000, 20000)
+            exports.qbx_core:Notify(src, Lang:t('success.you_have_received_rare_reward', { amount = Amount }), "success", 3500)
+        else
+            Amount = math.random(1000, 5000)
+            exports.qbx_core:Notify(src, Lang:t('success.you_have_exchanged_your_cryptostick_for', { amount = Amount }), "success", 3500)
+        end
 
         -- Give bank money instead of crypto
         Player.Functions.AddMoney('bank', Amount)
-
-        exports.qbx_core:Notify(src, Lang:t('success.you_have_exchanged_your_cryptostick_for', { amount = Amount }), "success", 3500)
     else
         exports.qbx_core:Notify(src, Lang:t('error.cryptostick_malfunctioned'), 'error')
     end

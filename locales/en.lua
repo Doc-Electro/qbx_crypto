@@ -6,7 +6,9 @@ local Translations = {
         cryptostick_malfunctioned = 'Cryptostick malfunctioned'
     },
     success = {
-        you_have_exchanged_your_cryptostick_for = 'You have exchanged your Cryptostick for: %{amount} Dollars '
+        you_have_exchanged_your_cryptostick_for = 'You have exchanged your Cryptostick for: %{amount} Dollars ',
+        you_have_received_rare_reward = 'You have found a rare Cryptostick with %{amount} Dollars',
+
     },
     credit = {
         there_are_amount_credited = 'There are %{amount} Eternal(s) credited!',
